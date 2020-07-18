@@ -18,3 +18,16 @@ after_success:
   - docker push aayushadhikari/multi-nginx
   - docker push aayushadhikari/multi-server
   - docker push aayushadhikari/multi-worker
+
+deploy:
+  edge: true
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-868407815975
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
